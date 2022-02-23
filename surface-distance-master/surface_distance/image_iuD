@@ -1,0 +1,19 @@
+ import cv
+
+ image = cv.LoadImage('lena.bmp',1)
+ size = (image.width,image.height)
+ iUD = cv.CreateImage(size,image.depth,image.nChannels)
+ iLR = cv.CreateImage(size,image.depth,image.nChannels)
+ iAcross = cv.CreateImage(size,image.depth,image.nChannels)
+ h = image.height
+ w = image.width
+ for i in range(h):
+    for j in range(w):
+          iUD[h-1-i,j] = image[i,j]
+          iLR[i,w-1-j] = image[i,j]
+        iAcross[h-1-i,w-1-j] = image[i,j]
+ cv.ShowImage('image',image)
+ cv.ShowImage('iUD',iUD)
+ cv.ShowImage('iLR',iLR)
+ cv.ShowImage('iAcross',iAcross)
+ cv.WaitKey(0)
